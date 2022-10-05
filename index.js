@@ -4,9 +4,17 @@ const address = {
     zipcode : "517129",
 }
 
-function showAddress(address){
-    for(let key in address)
-         console.log(key + ":" + address[key]);
+function AddressGenerator(street,city,zipcode){
+    this.street = street;
+    this.city = city;
+    this.zipcode = zipcode;
 }
 
-showAddress(address);
+function addressSynthesizer(street,city,zipcode){
+    return {
+        street,
+        city,
+        zipcode
+
+    };
+}
