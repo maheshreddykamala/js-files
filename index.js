@@ -1,20 +1,8 @@
-const address = {
-    street : "cherlopalle",
-    city : "chittoor",
-    zipcode : "517129",
-}
+const numbers = [1,2,3,4];
+console.log(includes(numbers,30));
 
-function AddressGenerator(street,city,zipcode){
-    this.street = street;
-    this.city = city;
-    this.zipcode = zipcode;
-}
-
-function addressSynthesizer(street,city,zipcode){
-    return {
-        street,
-        city,
-        zipcode
-
-    };
+function includes(numbers,searchElement){
+    return numbers.some( (number) => {
+        return number === searchElement;
+    })
 }
