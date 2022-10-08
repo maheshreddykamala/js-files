@@ -1,18 +1,17 @@
-const numbers = [1,2,3,4,1,1,2];
+const numbers = [1,2,3,4,5,6,7];
 
-const output = except(numbers,[3]);
+const output = move(numbers,3,20);
 
 console.log(output);
 
-function except(numbers,excluded){
-    const final = numbers.filter( (number) => {
-        for(let value of excluded){
-            if(number === value){
-                return false;
-            }
-        }
-        return true;
-    })
-
-    return final;
+function move(numbers,index,offset){
+  
+    const final = [...numbers];
+    if(index+offset < 0 || index+offset >= numbers.length){
+        console.error("invalid offset");
+        return;
+    }
+   final.splice(index,1);
+   final.splice(index+offset,0,numbers[index]);
+   return final;
 }
