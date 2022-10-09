@@ -1,13 +1,9 @@
-const numbers = [1,2,3,4,5,1,1,1,4,7];
+const movies = [
+    { title: 'a', year: 2018, rating: 4.5},
+    { title: 'b', year: 2018, rating: 4.7},
+    { title: 'c', year: 2018, rating: 3},
+    { title: 'd', year: 2017, rating: 4.5},
+];
 
-const output = countOccurances(numbers,1);
 
-console.log(output);
-
-function countOccurances(numbers,searchElement){
-  
-  return numbers.reduce((ocuurance,currentValue) => {
-          return currentValue === searchElement ? ++ocuurance : ocuurance;
-  },0);
-   
-}
+movies.filter(movie => movie.rating > 4 && movie.year === 2018).sort((a,b)=> b.rating > a.rating).forEach(movie => console.log(movie.title));
