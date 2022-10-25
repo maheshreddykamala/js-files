@@ -1,0 +1,8 @@
+. The primitive types like boolean, number, string can be either primitive or an object depending on the way they were created.
+ex:   
+1. let number = 23;
+2. let number1 =Number(100);
+-- The number and number1 are primitives. There "typeof" is "number"
+3.let number2 = new Number(100);
+4.let number3 =  new Object(90);
+-- The number2 and number3 are objects. There "typeof" is "obect".

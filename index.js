@@ -1,35 +1,68 @@
-function Stopwatch(){
 
-    let duration = 0;
-    let watchOn = false;
-    let start= 0;
-    let stop = 0;
-      this.start= function(){
-        if(watchOn){
-            throw new Error("Stopwatch is already on.");
-        }
-             start = Date.now();
-             watchOn = true;
-      }
-      this.stop = function(){
-        if(!watchOn){
-            throw new Error("Stopwatch is not turned on.")
-        }
-             stop = Date.now();
-             watchOn = false;
-             duration += Math.trunc((stop - start)/1000);
-             start= 0;
-             stop = 0;
-      }
-      this.reset = function(){
-           duration = 0;
-      }
-      Object.defineProperty(this,'duration',{
-        get: function(){
-            return duration;
-        }
-    })
+
+function HtmlElement(){
+    this.click = function(){
+        console.log("clicked on the element");
+    }
 }
 
-const sw= new Stopwatch();
+HtmlElement.prototype.focus = function(){
+    console.log("The element is focused");
+};
 
+function HtmlSelectElement(itemArray = []){
+
+   
+        this.items = [...itemArray];
+    
+
+    this.addItem = function(element){
+        this.items.push(element);
+    };
+
+    this.removeItem = function(element){
+        let itemIndex = this.items.indexOf(element);
+        if(itemIndex === -1){
+            return;
+        }
+        this.items.splice(itemIndex,1);
+    };
+
+    this.render = function(){
+
+        let midString = "";
+        this.items.forEach( (item) => {
+            midString = midString +  `<option>${item}</option>`+"\n";
+          });
+        let finalString = 
+        return finalString;
+        
+    };
+}
+
+HtmlSelectElement.prototype = new HtmlElement();
+HtmlSelectElement.prototype.constructor = HtmlSelectElement;
+
+
+
+function HtmlImageElement(src=undefined){
+      this.src = src;
+      this.render = function(){
+           return `<img src="${this.src}" />`;
+      }
+}
+
+HtmlImageElement.prototype = new HtmlElement();
+HtmlImageElement.prototype.constructor = HtmlImageElement;
+
+
+
+const elements = [
+    new HtmlSelectElement([10,20,30]),
+    new HtmlImageElement("http://www.google.com")
+    
+];
+
+for(let element of elements){
+    console.log(element.render());
+}
